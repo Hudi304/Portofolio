@@ -1,0 +1,122 @@
+@import '../../../../common-components/ReactParallaxTilt.scss';
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+// ::-webkit-scrollbar-thumb {
+//     background: #ff0000;
+// }
+
+.card {
+    width: max-content;
+    height: max-content;
+
+    border: 2px solid black;
+    border-radius: 20px;
+
+    .profile-picture {
+        border-radius: 50%;
+        border: 2px solid black;
+    }
+}
+
+.card-positon-dimention {
+    width: 600px;
+    height: 300px;
+}
+
+.parallax-effect-glare-scale {
+    @extend .card-positon-dimention;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(85, 81, 105);
+    color: white;
+    border: 0px solid black;
+    border-radius: 20px;
+    transform-style: preserve-3d;
+
+    .clear-button {
+        @extend .card-positon-dimention;
+        background: transparent;
+        border-radius: 20px;
+        appearance: none;
+        border: none !important;
+    }
+
+    .inner-element {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 35px;
+        font-style: italic;
+        color: white;
+        transform: translateZ(30px);
+    }
+
+    .inner-wrapper {
+        display: grid;
+        grid-template-rows: auto auto;
+        font-size: 35px;
+        color: white;
+        transform: translateZ(30px);
+
+        .grid-item {
+            // border: 1px solid black;
+
+            .chat_message {
+                padding-left: 30px;
+                padding-top: 15px;
+                display: flex;
+                justify-content: left;
+            }
+        }
+
+        .profile-picture-felx-container {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            padding-left: 40px;
+            height: auto;
+            .profile-picture {
+                border-radius: 50%;
+                border: 2px solid rgb(255, 255, 255);
+                width: 100px;
+                height: 100px;
+            }
+            .name {
+                padding-left: 10px;
+            }
+        }
+    }
+}
+
+.cursor {
+    opacity: 0;
+    transition: 0.2s;
+}
+.cursor.active {
+    opacity: 1;
+}
+
+html {
+    height: 100%;
+}
+body {
+    display: flex;
+    height: 100%;
+    background-color: #333;
+}
+.word {
+    margin: auto;
+    color: white;
+    font: 700 normal 2.5em 'tahoma';
+    text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
+}
