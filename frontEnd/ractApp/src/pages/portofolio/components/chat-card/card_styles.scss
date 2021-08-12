@@ -8,31 +8,12 @@ html {
     width: 0; /* Remove scrollbar space */
     background: transparent; /* Optional: just make scrollbar invisible */
 }
-/* Optional: show position indicator in red */
-// ::-webkit-scrollbar-thumb {
-//     background: #ff0000;
-// }
 
-.card {
-    width: max-content;
-    height: max-content;
-
-    border: 2px solid black;
-    border-radius: 20px;
-
-    .profile-picture {
-        border-radius: 50%;
-        border: 2px solid black;
-    }
-}
-
-.card-positon-dimention {
-    width: 600px;
-    height: 300px;
+.debug {
+    border: 1px solid black;
 }
 
 .parallax-effect-glare-scale {
-    @extend .card-positon-dimention;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,82 +22,118 @@ html {
     border: 0px solid black;
     border-radius: 20px;
     transform-style: preserve-3d;
+    transition: 0.3s linear;
+    width: fit-content;
 
     .clear-button {
-        @extend .card-positon-dimention;
         background: transparent;
         border-radius: 20px;
         appearance: none;
         border: none !important;
-    }
 
-    .inner-element {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-size: 35px;
-        font-style: italic;
-        color: white;
-        transform: translateZ(30px);
-    }
+        .card-grid {
+            display: grid;
+            grid-template-rows: 10vh auto;
+            font-size: 4vh;
+            color: white;
+            transform: translateZ(20px);
 
-    .inner-wrapper {
-        display: grid;
-        grid-template-rows: auto auto;
-        font-size: 35px;
-        color: white;
-        transform: translateZ(30px);
+            .profile-picture-felx-container {
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                padding-left: 0.5vh;
+                height: max-content;
 
-        .grid-item {
-            // border: 1px solid black;
+                .profile-picture {
+                    position: relative;
+                    border-radius: 50%;
+                    border: 2px solid rgb(255, 255, 255);
+                    width: 8vh;
+                    height: 8vh;
+                    left: -1vh;
+                }
+
+                .name {
+                    padding: 1vh 1.5vh 1vh 0.5vh;
+                }
+            }
 
             .chat_message {
-                padding-left: 30px;
-                padding-top: 15px;
                 display: flex;
                 justify-content: left;
-            }
-        }
+                align-items: center;
+                align-content: center;
+                padding-left: 2vh;
+                padding-top: 0.5vh;
+                padding-bottom: 1.5vh;
 
-        .profile-picture-felx-container {
-            display: flex;
-            align-items: center;
-            justify-content: left;
-            padding-left: 40px;
-            height: auto;
-            .profile-picture {
-                border-radius: 50%;
-                border: 2px solid rgb(255, 255, 255);
-                width: 100px;
-                height: 100px;
-            }
-            .name {
-                padding-left: 10px;
+                font-size: 2vh;
+                color: white;
+
+                .cursor {
+                    opacity: 0;
+                    transition: 0.2s;
+                }
+                .cursor.active {
+                    opacity: 1;
+                }
             }
         }
     }
 }
 
-.cursor {
-    opacity: 0;
-    transition: 0.2s;
-}
-.cursor.active {
-    opacity: 1;
+.card-pulse {
+    animation: pulse 2s infinite;
 }
 
-html {
-    height: 100%;
+.card_animations {
+    animation: chat_card_pop_up 0.3s ease-out forwards, pulse 2s linear 3s infinite;
+    // animation: name duration timing-function delay iteration-count direction fill-mode;
 }
-body {
-    display: flex;
-    height: 100%;
-    background-color: #333;
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.98);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.98);
+    }
 }
-.word {
-    margin: auto;
-    color: white;
-    font: 700 normal 2.5em 'tahoma';
-    text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
+
+.chat_card_pop_up {
+    animation: pop-up;
+    animation-timing-function: ease-out;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pop-up {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+@keyframes chat-box-jump-left {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

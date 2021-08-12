@@ -11,7 +11,7 @@ export function Content(props: ContentProps): JSX.Element {
     return (
         <div className="content">
             <Navbar />
-            <h1>Portofolio</h1>
+            {/* <h1>Portofolio</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat vehicula placerat. Aliquam eu placerat mi. Morbi
                 nec aliquet augue. Pellentesque sit amet convallis lectus. Nulla eget est quis lorem luctus maximus. Vestibulum vel ex
@@ -50,7 +50,7 @@ export function Content(props: ContentProps): JSX.Element {
                 hendrerit pharetra sit amet non diam.
             </p>
             <p></p>
-            CONTENT
+            CONTENT */}
         </div>
     )
 }

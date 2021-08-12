@@ -39,25 +39,27 @@ export function Navbar(props: NavbarProps): JSX.Element {
     let prevClassList: DOMTokenList
     let htmlSections = document.getElementsByClassName('navbar-section')
     return (
-        <div className="navbar">
-            <div id="semicircle" className={`semicircle ${semicircleClasses}`}></div>
-            {sections.map((item, i) => {
-                return (
-                    <button
-                        key={i}
-                        className={`navbar-section ${i == 0 ? 'active' : ''}`}
-                        onClick={e => {
-                            onClick(i, semicircle, e, htmlSections)
-                            if (prevClassList != undefined) {
-                                prevClassList.remove('active')
-                            }
-                            prevClassList = (e.target as Element).classList
-                        }}
-                    >
-                        <div className="item">{item}</div>
-                    </button>
-                )
-            })}
+        <div className="">
+            <div id="semicircle selector_pop_up" className={`selector ${semicircleClasses}`} />
+            <div className="navbar navbar_expand_width" style={{ maxWidth: `${sections.length * 50}px` }}>
+                {sections.map((item, i) => {
+                    return (
+                        <button
+                            key={i}
+                            className={`navbar-section-btn ${i == 0 ? 'active' : ''}`}
+                            onClick={e => {
+                                onClick(i, semicircle!, e, htmlSections)
+                                if (prevClassList != undefined) {
+                                    prevClassList.remove('active')
+                                }
+                                prevClassList = (e.target as Element).classList
+                            }}
+                        >
+                            <div className="item">{item}</div>
+                        </button>
+                    )
+                })}
+            </div>
         </div>
     )
 }

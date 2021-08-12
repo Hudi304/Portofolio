@@ -1,57 +1,148 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
-.navbar {
-    background-color: rgb(85, 81, 105);
-    border-radius: 20px 20px 10px 10px;
-    height: 40px;
-    display: flex;
-    align-content: center;
-    justify-content: flex-start;
-}
-
-.navbar-section {
-    width: 50px;
-    height: auto;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    flex-direction: column;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    padding: 0;
-    border-radius: 20px;
-    background-color: rgb(85, 81, 105);
-}
-
-.navbar-section:hover {
-    border: 3px solid rgb(85, 81, 105);
-    border-radius: 20px;
-}
-
-.semicircle {
+.selector {
     position: absolute;
     background-color: rgb(235, 124, 20);
     width: 50px;
     height: 50px;
     border-radius: 50%;
     transform: translate(-3px, -7px);
-    z-index: 2;
+    z-index: 1;
     border: 3px solid rgb(85, 81, 105);
-    transition: 0.3s ease-out;
-}
-.item {
-    position: absolute;
-    z-index: 3;
-    pointer-events: none; //! super tare chestia asta te lasa sa daci click prin chestii
+
+    animation: pop-up;
+    animation-timing-function: ease-out;
+    animation-duration: 0.3s;
+    // transition: 0.3s ease-out;
 }
 
-.active {
+.navbar {
+    background-color: rgb(85, 81, 105);
+    border-radius: 20px;
+    height: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    transform: scale(0);
+    z-index: 0;
+    .navbar-section-btn {
+        width: 50px;
+        height: auto;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        flex-direction: column;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 0;
+        border-radius: 20px;
+        background-color: transparent;
+        z-index: 1;
+    }
+
     .item {
-        -webkit-animation: jello-horizontal 0.9s both;
-        animation: jello-horizontal 0.9s both;
+        z-index: 4;
+        position: absolute;
+        pointer-events: none; //! super tare chestia asta te lasa sa daci click prin chestii
+    }
+
+    .active .item {
+        z-index: 4;
+    }
+}
+
+//? ANIMATONS
+
+.navbar_expand_width {
+    animation: expand_width 0.3s ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: 0.3s;
+    .selector {
+        animation: pop-up;
+        animation-timing-function: ease-out;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+    }
+
+    .item {
+        animation: pop-up-delay;
+        animation-timing-function: ease-out;
+        animation-duration: 0.6s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.2s;
+    }
+
+    .item :not(.active) {
+        animation: pop-up-delay;
+        animation-timing-function: ease-out;
+        animation-duration: 0.6s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.2s;
+    }
+    .item .active {
+        animation: pop-up-delay;
+        animation-timing-function: ease-out;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+    }
+}
+
+.selector_pop_up {
+    animation: pop-up;
+    animation-timing-function: ease-out;
+    animation-duration: 0.3s;
+}
+@keyframes pop-up {
+    0% {
+        transform: scale(0) translate(-3px, -7px);
+    }
+    70% {
+        transform: scale(1.2) translate(-3px, -7px);
+    }
+    100% {
+        transform: scale(1) translate(-3px, -7px);
+    }
+}
+
+@keyframes pop-up-delay {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(0);
+    }
+    90% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes expand_width {
+    0% {
+        transform: scale(0);
+    }
+    25% {
+        // transform: translateX(28vh);
+        transform: scale(0);
+    }
+    50% {
+        width: 0%;
+        // transform: translateX(28vh);
+        transform: scale(1);
+    }
+    75% {
+        width: 50%;
+        // transform: translateX(28vh);
+        transform: scale(1);
+    }
+    100% {
+        width: 100%;
+        transform: scale(1); // transform: translateX(28vh);
     }
 }
 

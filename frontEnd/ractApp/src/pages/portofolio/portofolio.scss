@@ -7,6 +7,12 @@ html {
     background: transparent; /* Optional: just make scrollbar invisible */
 }
 
+.portofolio-grid {
+    display: grid;
+    grid-template-columns: 33vw 66vw;
+    grid-template-rows: 100vh;
+}
+
 .body {
     width: 100vw;
     height: 100vh;
@@ -15,38 +21,92 @@ html {
 .backgroud-container {
     width: 100vw;
     height: 400vh;
-}
 
-.backgroud {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    // display: flex;
-    // align-items: center;
-    // padding-top: 30vh;
-    // justify-content: flex-start;
-    background-size: 300% 300%;
-    background-image: linear-gradient(
-        -45deg,
-        #3f51b1 0%,
-        #5a55ae 13%,
-        #7b5fac 25%,
-        #8f6aae 38%,
-        #a86aa4 50%,
-        #cc6b8e 62%,
-        #f18271 75%,
-        #f3a469 87%,
-        #f7c978 100%
-    );
-    animation: AnimateBG 20s ease infinite;
+    .backgroud {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-size: 300% 300%;
+        background-image: linear-gradient(
+            -45deg,
+            #3f51b1 0%,
+            #5a55ae 13%,
+            #7b5fac 25%,
+            #8f6aae 38%,
+            #a86aa4 50%,
+            #cc6b8e 62%,
+            #f18271 75%,
+            #f3a469 87%,
+            #f7c978 100%
+        );
+        animation: AnimateBG 20s ease infinite;
 
-    .center-felx {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        // flex-direction: column;
+        .chat-card-container {
+            position: absolute;
+            z-index: 1;
+            top: 42vh;
+            left: 43vw;
+        }
+
+        .bubble {
+            position: absolute;
+            width: 6vw;
+            height: 6vw;
+            background-color: rgb(85, 81, 105);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            padding: 0;
+            top: 47vh;
+            left: 47vw;
+        }
+
+        .bubble:hover {
+            width: 7vw;
+            height: 7vw;
+            top: 46.5vh;
+            left: 46.5vw;
+        }
+
+        .bubble:hover {
+            transform: scale(1.1);
+            transition: ease-out;
+            .alarm {
+                transform: scale(1.1);
+                transition: ease-out;
+            }
+        }
+
+        .ball {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(85, 81, 105);
+            border-radius: 100%;
+            position: absolute;
+            margin: 0 auto;
+            top: 49vh;
+            left: 48.3vw;
+            z-index: -3;
+            transform: scale(0);
+        }
+
+        .content_container {
+            position: absolute;
+            margin: 0 auto;
+            top: 19.4vh;
+            left: 48.3vw;
+            z-index: -1;
+        }
     }
 }
+
+//?     ANIMATIONS
+
+//*     BACKGROUND
 
 @keyframes AnimateBG {
     0% {
@@ -60,16 +120,107 @@ html {
     }
 }
 
-.chat-container {
-    position: relative;
-    z-index: 1;
+//*     CHAT-CARD
+
+.ball_jump_animation {
+    animation-name: ball-jump;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes ball-jump {
+    0% {
+        transform: translateY(1.2vh);
+        transform: scale(0);
+    }
+    5% {
+        transform: translateY(1.6vh);
+    }
+    10% {
+        transform: translateY(2.4vh);
+    }
+    15% {
+        transform: translateY(4vh);
+    }
+    20% {
+        transform: translateY(7.6vh);
+    }
+    25% {
+        transform: translateY(14.4vh);
+    }
+    30% {
+        transform: translateY(20vh);
+    }
+    35% {
+        transform: translateY(30.4vh);
+    }
+    40% {
+        transform: translateY(30.8vh);
+        height: 46px;
+        width: 54px;
+    }
+    50% {
+        transform: translateY(35.2vh);
+        height: 24px;
+        width: 72px;
+    }
+    55% {
+        transform: translateY(32.4vh);
+        height: 38px;
+        width: 58px;
+    }
+    60% {
+        transform: translateY(27.6vh);
+        height: 48px;
+        width: 52px;
+    }
+    65% {
+        transform: translateY(22vh);
+        height: 50px;
+        width: 50px;
+    }
+    70% {
+        transform: translateY(14.4vh);
+    }
+    75% {
+        transform: translateY(4vh);
+    }
+    80% {
+        transform: translateY(-10vh);
+    }
+    85% {
+        transform: translateY(-22vh);
+    }
+    90% {
+        transform: translateY(-25vh);
+    }
+    95% {
+        transform: translateY(-27vh);
+    }
+    100% {
+        transform: translateY(-30vh);
+        transform: scale(0);
+    }
 }
 
 .chat-container-left {
     animation-name: chat_move_left;
-    animation-timing-function: linear;
+    animation-timing-function: ease-in;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+}
+
+@keyframes chat_move_left {
+    from {
+        transform: scale(1);
+    }
+    100% {
+        left: 0px;
+        // transform: scale(0.75);
+        margin: 2vh;
+    }
 }
 
 .chat-container-right {
@@ -79,16 +230,6 @@ html {
     animation-fill-mode: forwards;
 }
 
-@keyframes chat_move_left {
-    from {
-        transform: translateX(0);
-    }
-    100% {
-        left: 0px;
-        transform: scale(0.75);
-    }
-}
-
 @keyframes chat_move_right {
     0% {
         left: 0px;
@@ -100,23 +241,7 @@ html {
     }
 }
 
-@keyframes chat_move_right {
-    0% {
-        left: 0px;
-        transform: scale(0.75);
-    }
-    100% {
-        transform: translateX(0);
-        transform: scale(1);
-    }
-}
-
-.content_container {
-    position: relative;
-    width: 70vw;
-    max-width: 500px;
-    top: 100vh;
-}
+//*     CONTENT ANIMATIONS
 
 .content_move_up {
     animation: content_move_up 1s;
@@ -124,14 +249,6 @@ html {
     animation-duration: 1s;
     animation-fill-mode: forwards;
 }
-
-.content_move_down {
-    animation: content_move_down 1s;
-    animation-timing-function: ease-out;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-}
-
 @keyframes content_move_up {
     from {
         top: calc(100vh - 50px);
@@ -141,11 +258,91 @@ html {
     }
 }
 
+.content_move_down {
+    animation: content_move_down 1s;
+    animation-timing-function: ease-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
 @keyframes content_move_down {
     from {
         top: 10vh;
     }
     100% {
         top: calc(100vh - 50px);
+    }
+}
+
+//*     BUBBLE
+
+.bubble_animation {
+    animation: pop-up 0.3s ease-out forwards, wiggle 0.9s ease-out 2s infinite;
+    // animation: name duration timing-function delay iteration-count direction fill-mode;
+}
+
+.bubble_pop_up {
+    animation: pop-up;
+    animation-timing-function: ease-out;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+.bubble_pop_down {
+    animation: pop-down;
+    animation-timing-function: ease-out;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+.bubble_wiggle {
+    animation: wiggle;
+    animation-timing-function: ease-out;
+    animation-duration: 0.9s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pop-up {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pop-down {
+    0% {
+        transform: scale(1);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(10deg);
+    }
+    5% {
+        transform: rotate(-10deg);
+    }
+    10% {
+        transform: rotate(20deg);
+    }
+    15% {
+        transform: rotate(-5deg);
+    }
+    20% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
     }
 }
