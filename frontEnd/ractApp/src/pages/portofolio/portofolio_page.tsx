@@ -22,6 +22,7 @@ function PortofolioComponent(props: PortofolioProps): JSX.Element {
         if (props.portofolio.moveChatLeft.moveChatLeft) {
             setChatClassNames('chat-container-left')
             setBallClasses('ball_jump_animation')
+            setNavbarClasses('navbar_component_animations')
         }
     }, [props.portofolio.moveChatLeft.moveChatLeft])
 
@@ -33,6 +34,8 @@ function PortofolioComponent(props: PortofolioProps): JSX.Element {
     const [bubbleClicked, setBubbleClicked] = useState(false)
 
     const [ballClasses, setBallClasses] = useState('')
+
+    const [navbarClasses, setNavbarClasses] = useState('')
 
     const cardWidth = '25vw'
     const cardHeight = 'auto'
@@ -65,34 +68,38 @@ function PortofolioComponent(props: PortofolioProps): JSX.Element {
     return (
         <div className="backgroud-container">
             <div id="backgroud" className="backgroud">
-                {!bubbleClicked ? (
-                    <button
-                        className={`bubble ${bubbleClasses}`}
-                        onClick={e => {
-                            bubbleOnClick()
-                        }}
-                        onMouseLeave={e => {
-                            bubbleOnMouseLeave()
-                        }}
-                    >
-                        <Alarm className={'alarm'} style={{ width: '5vw', height: '5vw', fill: 'white' }}></Alarm>
-                    </button>
-                ) : (
-                    <div className={`chat-card-container ${chatClassNames}`}>
-                        <Card
-                            scrolledDistance={scrollVal}
-                            trackOnWindow={false}
-                            chatText={chatText}
-                            profilePicture={profilePicture}
-                            animationClasses={''}
-                            scale={0.5}
-                        ></Card>
-                    </div>
-                )}
-
-                <div className={`content_container `}>
-                    <Content />
+                <div>
+                    {!bubbleClicked ? (
+                        <button
+                            className={`bubble ${bubbleClasses}`}
+                            onClick={e => {
+                                bubbleOnClick()
+                            }}
+                            onMouseLeave={e => {
+                                bubbleOnMouseLeave()
+                            }}
+                        >
+                            <Alarm className={'alarm'} style={{ width: '5vw', height: '5vw', fill: 'white' }}></Alarm>
+                        </button>
+                    ) : (
+                        <>
+                            <div className={`chat-card-container ${chatClassNames}`}>
+                                <Card
+                                    scrolledDistance={scrollVal}
+                                    trackOnWindow={false}
+                                    chatText={chatText}
+                                    profilePicture={profilePicture}
+                                    animationClasses={''}
+                                    scale={0.5}
+                                ></Card>
+                            </div>
+                            <div className={`content_container`}>
+                                <Content navbarComponentClasses={navbarClasses} />
+                            </div>
+                        </>
+                    )}
                 </div>
+
                 <div className={`ball ${ballClasses} `}></div>
             </div>
         </div>

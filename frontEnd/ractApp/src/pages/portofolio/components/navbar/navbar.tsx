@@ -4,11 +4,18 @@ import { AccessAlarm, ThreeDRotation, GitHub, Facebook, Instagram, BugReport } f
 
 interface NavbarProps {
     something?: string
+    navbarComponentClasses: string
 }
 
 const sections = [<AccessAlarm />, <ThreeDRotation />, <GitHub />, <Facebook />, <Instagram />, <BugReport />]
 
 export function Navbar(props: NavbarProps): JSX.Element {
+    const [semicircleClasses, setSemicircleClasses] = useState('')
+    const semicircle = document.getElementById('semicircle')!
+    let prevClassList: DOMTokenList
+    let htmlSections = document.getElementsByClassName('navbar-section')
+    const { navbarComponentClasses } = props
+
     function onClick(
         i: number,
         selector: HTMLElement,
@@ -18,8 +25,10 @@ export function Navbar(props: NavbarProps): JSX.Element {
         selector!.style.left = `${i * 50}px`
         const classList = (e.target as Element).classList
         const elemnt = e.target as Element
+        // const children = element.
 
-        console.log(e)
+        console.log(elemnt)
+        console.log(classList)
 
         for (let section of sections) {
             const sectionElement = section as Element
@@ -34,20 +43,17 @@ export function Navbar(props: NavbarProps): JSX.Element {
         }
     }
 
-    const [semicircleClasses, setSemicircleClasses] = useState('')
-    const semicircle = document.getElementById('semicircle')!
-    let prevClassList: DOMTokenList
-    let htmlSections = document.getElementsByClassName('navbar-section')
     return (
-        <div className="">
-            <div id="semicircle selector_pop_up" className={`selector ${semicircleClasses}`} />
+        <div className={`${navbarComponentClasses}`}>
             <div className="navbar navbar_expand_width" style={{ maxWidth: `${sections.length * 50}px` }}>
+                <div id="semicircle" className={`selector ${semicircleClasses}`} />
                 {sections.map((item, i) => {
                     return (
                         <button
                             key={i}
                             className={`navbar-section-btn ${i == 0 ? 'active' : ''}`}
                             onClick={e => {
+                                const semicircle = document.getElementById('semicircle')!
                                 onClick(i, semicircle!, e, htmlSections)
                                 if (prevClassList != undefined) {
                                     prevClassList.remove('active')

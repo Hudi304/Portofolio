@@ -107,13 +107,13 @@ html {
 }
 
 .chat_card_pop_up {
-    animation: pop-up;
+    animation: chat-pop-up;
     animation-timing-function: ease-out;
-    animation-duration: 0.3s;
+    animation-duration: 0.4s;
     animation-fill-mode: forwards;
 }
 
-@keyframes pop-up {
+@keyframes chat-pop-up {
     0% {
         transform: scale(0);
     }
@@ -124,7 +124,6 @@ html {
         transform: scale(1);
     }
 }
-
 
 @keyframes chat-box-jump-left {
     0% {

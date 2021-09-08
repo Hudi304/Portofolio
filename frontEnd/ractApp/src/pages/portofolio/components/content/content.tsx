@@ -5,12 +5,14 @@ import { Navbar } from '../navbar/navbar'
 
 interface ContentProps {
     scale?: number
+    navbarComponentClasses: string
 }
 
 export function Content(props: ContentProps): JSX.Element {
+    const { navbarComponentClasses } = props
     return (
         <div className="content">
-            <Navbar />
+            <Navbar navbarComponentClasses={navbarComponentClasses} />
             {/* <h1>Portofolio</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat vehicula placerat. Aliquam eu placerat mi. Morbi

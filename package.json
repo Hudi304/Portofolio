@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "redux-devtools-extension": "^2.13.9"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }

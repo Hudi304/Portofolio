@@ -61,15 +61,15 @@ html {
             cursor: pointer;
             outline: none;
             padding: 0;
-            top: 47vh;
-            left: 47vw;
+            top: calc(50vh - 3vw);
+            left: calc(50vw - 3vw);
         }
 
         .bubble:hover {
             width: 7vw;
             height: 7vw;
-            top: 46.5vh;
-            left: 46.5vw;
+            top: calc(50vh - 3.5vw);
+            left: calc(50vw - 3.5vw);
         }
 
         .bubble:hover {
@@ -82,14 +82,14 @@ html {
         }
 
         .ball {
+            position: absolute;
             width: 50px;
             height: 50px;
             background-color: rgb(85, 81, 105);
             border-radius: 100%;
-            position: absolute;
             margin: 0 auto;
-            top: 49vh;
-            left: 48.3vw;
+            top: calc(50vh - 25px);
+            left: calc(50vw - 25px);
             z-index: -3;
             transform: scale(0);
         }
@@ -100,6 +100,8 @@ html {
             top: 19.4vh;
             left: 48.3vw;
             z-index: -1;
+            width: auto;
+            height: auto;
         }
     }
 }
@@ -200,8 +202,10 @@ html {
         transform: translateY(-27vh);
     }
     100% {
-        transform: translateY(-30vh);
-        transform: scale(0);
+        // transform: translateY(-33.8vh);
+        // transform: translateX(-33.8vh);
+        transform: translate(0px, -33.8vh);
+        // transform: scale(0);
     }
 }
 
@@ -218,7 +222,6 @@ html {
     }
     100% {
         left: 0px;
-        // transform: scale(0.75);
         margin: 2vh;
     }
 }
@@ -277,15 +280,17 @@ html {
 //*     BUBBLE
 
 .bubble_animation {
-    animation: pop-up 0.3s ease-out forwards, wiggle 0.9s ease-out 2s infinite;
+    animation: bubble-pop-up 0.3s ease-out forwards, bubble-wiggle-animation 0.9s ease-out 2s infinite;
     // animation: name duration timing-function delay iteration-count direction fill-mode;
 }
 
 .bubble_pop_up {
-    animation: pop-up;
+    animation: bubble-pop-up;
     animation-timing-function: ease-out;
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
+    top: 47%;
+    left: 47%;
 }
 
 .bubble_pop_down {
@@ -296,13 +301,13 @@ html {
 }
 
 .bubble_wiggle {
-    animation: wiggle;
+    animation: bubble-wiggle-bubble-wiggle;
     animation-timing-function: ease-out;
     animation-duration: 0.9s;
     animation-iteration-count: infinite;
 }
 
-@keyframes pop-up {
+@keyframes bubble-pop-up {
     0% {
         transform: scale(0);
     }
@@ -326,7 +331,7 @@ html {
     }
 }
 
-@keyframes wiggle {
+@keyframes bubble-wiggle-animation {
     0% {
         transform: rotate(10deg);
     }

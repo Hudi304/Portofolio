@@ -9,14 +9,11 @@
     transform: translate(-3px, -7px);
     z-index: 1;
     border: 3px solid rgb(85, 81, 105);
-
-    animation: pop-up;
-    animation-timing-function: ease-out;
-    animation-duration: 0.3s;
-    // transition: 0.3s ease-out;
+    transform: scale(0);
 }
 
 .navbar {
+    position: relative;
     background-color: rgb(85, 81, 105);
     border-radius: 20px;
     height: 40px;
@@ -24,7 +21,8 @@
     align-content: center;
     justify-content: flex-start;
     transform: scale(0);
-    z-index: 0;
+    top: -50px;
+
     .navbar-section-btn {
         width: 50px;
         height: auto;
@@ -40,61 +38,84 @@
         padding: 0;
         border-radius: 20px;
         background-color: transparent;
-        z-index: 1;
-    }
+        .item {
+            z-index: 4;
+            position: absolute;
+            pointer-events: none; //! super tare chestia asta te lasa sa daci click prin chestii
+        }
 
-    .item {
-        z-index: 4;
-        position: absolute;
-        pointer-events: none; //! super tare chestia asta te lasa sa daci click prin chestii
-    }
-
-    .active .item {
-        z-index: 4;
+        .active .item {
+            z-index: 4;
+        }
     }
 }
 
 //? ANIMATONS
 
-.navbar_expand_width {
-    animation: expand_width 0.3s ease-out;
-    animation-fill-mode: forwards;
-    animation-delay: 0.3s;
-    .selector {
-        animation: pop-up;
-        animation-timing-function: ease-out;
-        animation-duration: 0.3s;
-        animation-fill-mode: forwards;
-    }
+.navbar_component_animations {
+    position: absolute;
+    // overflow: hidden;
 
-    .item {
-        animation: pop-up-delay;
-        animation-timing-function: ease-out;
-        animation-duration: 0.6s;
-        animation-fill-mode: forwards;
-        animation-delay: 0.2s;
-    }
+    .navbar_expand_width {
+        transform: scale(1);
+        .selector {
+            position: absolute;
+            animation: selector-pop-up;
+            animation-timing-function: ease-out;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+            animation-delay: 0.9s;
+            border: 1px solid black;
+            transition: 0.3s ease;
+            z-index: 2;
+            width: 50px;
+            height: 50px;
+        }
 
-    .item :not(.active) {
-        animation: pop-up-delay;
-        animation-timing-function: ease-out;
-        animation-duration: 0.6s;
-        animation-fill-mode: forwards;
-        animation-delay: 0.2s;
-    }
-    .item .active {
-        animation: pop-up-delay;
-        animation-timing-function: ease-out;
-        animation-duration: 0.3s;
-        animation-fill-mode: forwards;
+        .navbar-section-btn {
+            border: 1px solid black;
+            .item {
+                // position: relative;
+                // animation: pop-up-delay;
+                // animation-timing-function: ease-out;
+                // animation-duration: 0.6s;
+                // animation-fill-mode: forwards;
+                // animation-delay: 0.2s;
+                // z-index: 4;
+                // animation-iteration-count: 1;
+            }
+        }
+
+        .navbar-section-btn.active {
+            background-color: green;
+            border: 1px solid black;
+            .item {
+                z-index: 4;
+                -webkit-animation: jello-horizontal 0.9s both;
+                animation: jello-horizontal 0.9s both;
+            }
+        }
     }
 }
 
-.selector_pop_up {
-    animation: pop-up;
-    animation-timing-function: ease-out;
-    animation-duration: 0.3s;
+.navbar-section-btn .active {
+    background-color: green;
+    border: 1px solid black;
+    z-index: 4;
 }
+
+@keyframes selector-pop-up {
+    0% {
+        transform: scale(0) translate(-3px, -7px);
+    }
+    70% {
+        transform: scale(1.2) translate(-3px, -7px);
+    }
+    100% {
+        transform: scale(1) translate(-3px, -7px);
+    }
+}
+
 @keyframes pop-up {
     0% {
         transform: scale(0) translate(-3px, -7px);
